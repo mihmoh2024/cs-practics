@@ -1,0 +1,56 @@
+using System;
+
+namespace PR1_1
+{
+  class Person
+  {
+    public enum Genders : int
+    {
+      Male,
+      Female,
+    };
+    public string firstName;
+    public string lastName;
+    public int age;
+    public Genders gender;
+    public Person(string _firstName, string _lastName, int _age, Genders _gender)
+    {
+      firstName = _firstName;
+      lastName = _lastName;
+      age = _age;
+      gender = _gender;
+    }
+    public override string ToString()
+    {
+      return firstName + " " + lastName + " (" + gender + "), age " + age;
+    }
+    class Manager : Person
+    {
+      string phoneNumber;
+      string officeLocations;
+
+      public Manager(string _firstName, string _lastName, int _age, Genders _gender, string _phoneNumber, string _officeLocations)
+        : base(_firstName, _lastName, _age, _gender)
+      {
+        phoneNumber = _phoneNumber;
+        officeLocations = _officeLocations;
+      }
+      public override string ToString()
+      {
+        return base.ToString() + ", " + phoneNumber + ", " + officeLocations;
+      }
+    }
+   
+    class Program
+    {
+      static void Main(string[] args)
+      {
+        Person p = new Person("Rusakov", "Aleksey", 36, Person.Genders.Male);
+        Manager M = new Manager("Perth Tanapon", "Sukhumpantanasan", 21, Person.Genders.Male, "66-02-123111", "Saint Dominic");
+        Console.WriteLine(p);
+        Console.WriteLine(M);
+        Console.ReadKey();
+      }
+    }
+  }
+}
